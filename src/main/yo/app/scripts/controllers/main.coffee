@@ -125,13 +125,14 @@ angular.module("nuxeoAngularSampleApp")
 ['$scope','nxSession','$routeParams','nxSearch'
 ($scope,nxSession,$routeParams,nxSearch) =>
   $scope.searchTag = $routeParams.tag
-  $routeParams.path = "/"
-  nxSearch.setQuery("SELECT * FROM Document WHERE ecm:mixinType = 'Picture' AND ecm:tag = '" +  $scope.searchTag + "'")
-  nxSearch.setPageSize(20)
-  $scope.nxSearch = nxSearch
+  nxSearch.setQuery("SELECT * FROM Document WHERE ecm:tag = '" +  $scope.searchTag + "'")
+  nxSearch.setPageSize(4)
+
+  $scope.items = nxSearch.items
+  $scope.busy = nxSearch.busy
 
   $scope.nextPage = ()->
-     $scope.nxSearch.nextPage()
+     nxSearch.nextPage()
 
 ])
 
