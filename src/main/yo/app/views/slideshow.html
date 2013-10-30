@@ -1,0 +1,17 @@
+<h2>{{searchTag}}</h2>
+  <div class="row-fluid">
+    <ul class="thumbnails" infinite-scroll='nextPage()' infinite-scroll-disabled='nxSearch.busy' infinite-scroll-distance='1'>
+      <li class="span3" ng-repeat='item in nxSearch.items'>
+        <div style="width:200px; height:200px" class="thumbnail">
+          <img src="{{item.value.thumbnailURL}}" alt="">
+          <div class="caption">
+            <span><strong>{{item.value.title}}</strong></span>
+            <p>{{item.value.title}}...</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div ng-show='nxSearch.busy'>Loading data...</div>
+
+</div>

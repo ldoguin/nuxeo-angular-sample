@@ -121,6 +121,20 @@ angular.module("nuxeoAngularSampleApp")
   
 ])
 
+.controller("SlideshowCtrl", 
+['$scope','nxSession','$routeParams','nxSearch'
+($scope,nxSession,$routeParams,nxSearch) =>
+  $scope.searchTag = $routeParams.tag
+  $routeParams.path = "/"
+  nxSearch.setQuery("SELECT * FROM Document WHERE ecm:mixinType = 'Picture' AND ecm:tag = '" +  $scope.searchTag + "'")
+  nxSearch.setPageSize(20)
+  $scope.nxSearch = nxSearch
+
+  $scope.nextPage = ()->
+     $scope.nxSearch.nextPage()
+
+])
+
 .controller "FileDestroyController", ["$scope", "$http", ($scope, $http) ->
   file = $scope.file
   state = undefined
